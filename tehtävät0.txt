@@ -1,0 +1,140 @@
+HARJOITUKSET 0
+https://www.websequencediagrams.com/
+
+
+title harjoitus 0-3
+
+käyttäjä->selain: Authentication Request
+note left of selain
+kayttaja kirjottaa osoiteriville
+https://fullstack-exampleapp.herokuapp.com/notes
+end note
+selain->palvelin:GET fullstack-exampleapp.herokuapp.com/notes
+palvelin->selain: status 200, sivun HTML-koodi
+selain->palvelin:GET fullstack-exampleapp.herokuapp.com/main.css
+palvelin->selain: status 200, ladataan sivun tyylitiedosto
+selain->palvelin:GET fullstack-exampleapp.herokuapp.com/main.js
+palvelin->selain: status 200, ladataan sivun javascript tiedosto
+
+selain->palvelin:GET fullstack-exampleapp.herokuapp.com/data.json
+palvelin->selain: data.json tiedosto luetaan
+
+note left of palvelin
+    main.js tiedostossa oleva skripti ajetaan, jossa tiedosto
+  fullstack-exampleapp.herokuapp.com/notes/data.json luetaan taulukkoon
+end note
+
+note left of selain
+ selain näyttää palvelimen palauttaman HTML:n
+ jossa listarakenteena data.json sisältö ja input text kenttä uuden
+ muistiinpanon tallettamista varten eli lomake ja submit nappi
+end note
+
+------------------------------------------------------------------------------------
+
+title harjoitus 0-4
+
+käyttäjä->selain: Authentication Request
+note left of selain
+kayttaja kirjoittaa "uusi rivi" input kenttään ja painaa tallenna nappulaa
+end note
+selain->palvelin:GET fullstack-exampleapp.herokuapp.com/new_note
+note left of palvelin
+  lomakkeen tieto "uusi rivi" lähetetään POST tyyppisesti
+  palvelimelle jossa lisätään notes nimiseen taulukkoon
+end note
+palvelin->palvelin: uudelleen ohjaus fullstack-exampleapp.herokuapp.com/notes
+palvelin->selain: status 200, sivun HTML-koodi
+selain->palvelin:GET fullstack-exampleapp.herokuapp.com/notes
+palvelin->selain: status 200, sivun HTML-koodi
+selain->palvelin:GET fullstack-exampleapp.herokuapp.com/main.css
+palvelin->selain: status 200, ladataan sivun tyylitiedosto
+selain->palvelin:GET fullstack-exampleapp.herokuapp.com/main.js
+palvelin->selain: status 200, ladataan sivun javascript tiedosto
+
+selain->palvelin:GET fullstack-exampleapp.herokuapp.com/data.json
+palvelin->selain: data.json tiedosto luetaan
+
+note left of palvelin
+    main.js tiedostossa oleva skripti ajetaan, jossa tiedosto
+  fullstack-exampleapp.herokuapp.com/notes/data.json luetaan
+end note
+
+note left of selain
+ selain näyttää palvelimen palauttaman HTML:n
+ jossa listarakenteena data.json sisältö ja input text kenttä uuden
+ muistiinpanon tallettamista varten eli lomake ja submit nappi
+end note
+
+---------------------------------------------------------------------------------
+
+title harjoitus 0-5, spa
+
+käyttäjä->selain: Authentication Request
+note left of selain
+kayttaja kirjottaa osoiteriville
+https://fullstack-exampleapp.herokuapp.com/spa
+end note
+selain->palvelin:GET fullstack-exampleapp.herokuapp.com/spa
+palvelin->selain: status 200, sivun HTML-koodi
+selain->palvelin:GET fullstack-exampleapp.herokuapp.com/main.css
+palvelin->selain: status 200, ladataan sivun tyylitiedosto
+selain->palvelin:GET fullstack-exampleapp.herokuapp.com/spa.js
+palvelin->selain: status 200, ladataan sivun javascript tiedosto
+
+selain->palvelin:GET fullstack-exampleapp.herokuapp.com/data.json
+palvelin->selain: data.json tiedosto luetaan
+
+note left of palvelin
+  spa.js tiedostossa oleva skripti ajetaan, jossa tiedosto
+  fullstack-exampleapp.herokuapp.com/notes/data.json luetaan taulukkoon
+end note
+
+note left of selain
+ selain näyttää palvelimen palauttaman HTML:n
+ jossa listarakenteena data.json sisältö ja input text kenttä uuden
+ muistiinpanon tallettamista varten eli lomake ja submit nappi.
+ Nyt action toiminto puuttuu, ja se on korvattu tyylitiedoston id:llä
+end note
+
+------------------------------------------------------------------------------
+title harjoitus 0-6, spa post json
+
+käyttäjä->selain: Authentication Request
+note left of selain
+kayttaja kirjottaa osoiteriville
+https://fullstack-exampleapp.herokuapp.com/spa
+end note
+selain->palvelin:GET fullstack-exampleapp.herokuapp.com/spa
+palvelin->selain: status 200, sivun HTML-koodi
+selain->palvelin:GET fullstack-exampleapp.herokuapp.com/main.css
+palvelin->selain: status 200, ladataan sivun tyylitiedosto
+selain->palvelin:GET fullstack-exampleapp.herokuapp.com/spa.js
+palvelin->selain: status 200, ladataan sivun javascript tiedosto
+
+selain->palvelin:GET fullstack-exampleapp.herokuapp.com/data.json
+palvelin->selain: data.json tiedosto luetaan
+
+note left of palvelin
+  spa.js tiedostossa oleva skripti ajetaan, jossa tiedosto
+  fullstack-exampleapp.herokuapp.com/notes/data.json luetaan taulukkoon
+end note
+
+note left of selain
+ selain näyttää palvelimen palauttaman HTML:n
+ jossa listarakenteena data.json sisältö ja input text kenttä uuden
+ muistiinpanon tallettamista varten eli lomake ja submit nappi.
+ Nyt action toiminto puuttuu, ja se on korvattu tyylitiedoston id:llä
+end note
+käyttäjä->selain: input kenttään "masa333"
+note left of selain
+kayttaja kirjottaa input kenttään masa333
+end note
+selain->palvelin:POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+note left of palvelin
+  lähetetään json muotoista dataa POST tyyppisesti
+  {content: "masa333", date: "2018-10-06T12:46:24.820Z"}
+end note
+palvelin->selain: status 201, created
+
+
